@@ -1,24 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerThunk } from '../redux/auth/operations';
-import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectLoading } from '../redux/auth/selectors';
+// import { selectLoading } from '../redux/auth/selectors';
 
 export const Register = () => {
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  // const isLoading = useSelector(selectLoading);
   const navigate = useNavigate();
   const submit = data => {
     dispatch(registerThunk(data))
       .unwrap()
       .then(() => {
-        toast.success('Welcome!');
         navigate('/');
-      })
-      .catch(() => toast.error('Data is not valid!'));
+      });
   };
   return (
     <form onSubmit={handleSubmit(submit)}>

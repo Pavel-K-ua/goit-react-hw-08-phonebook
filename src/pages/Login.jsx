@@ -1,15 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginThunk, registerThunk } from '../redux/auth/operations';
-import { toast } from 'react-toastify';
+import { loginThunk } from '../redux/auth/operations';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { selectIsLoggedIn, selectLoading } from '../redux/auth/selectors';
+import { selectIsLoggedIn } from '../redux/auth/selectors';
 
 export const Login = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { handleSubmit, register } = useForm();
-  const isLoading = useSelector(selectLoading);
+  // const isLoading = useSelector(selectLoading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,10 +16,8 @@ export const Login = () => {
     dispatch(loginThunk(data))
       .unwrap()
       .then(res => {
-        toast.success(`Welcome!${res.user.name}`);
         navigate(location.state?.from ?? '/');
       })
-      .catch(() => toast.error('Data is not valid!'));
   };
   if (isLoggedIn) {
     return <Navigate to="/" />;
