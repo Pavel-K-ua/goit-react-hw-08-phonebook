@@ -16,15 +16,21 @@ const Layout = () => {
     <>
       <nav>
         <Links>
-          <li>
-            <NavLink to="/">Contacts</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
+          {isLoggedIn && (
+            <li>
+              <NavLink to="/">Contacts</NavLink>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <NavLink to="/login">Log In</NavLink>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          )}
         </Links>
         <Links>
           {isLoggedIn && (

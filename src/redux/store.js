@@ -1,4 +1,4 @@
-import { phoneBookReducer } from './slice';
+import { phoneBookReducer } from './contacts/slice';
 import { authReducer } from './auth/slice';
 
 import { configureStore } from '@reduxjs/toolkit';

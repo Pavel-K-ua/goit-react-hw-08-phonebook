@@ -4,8 +4,11 @@ import {
   // selectError,
   selectFilter,
   selectLoading,
-} from 'redux/selectors';
-import { deleteContactThunk, fetchContactsThunk } from 'redux/operations';
+} from 'redux/contacts/selectors';
+import {
+  deleteContactThunk,
+  fetchContactsThunk,
+} from 'redux/contacts/operations';
 import { useEffect } from 'react';
 
 const ContactsList = () => {

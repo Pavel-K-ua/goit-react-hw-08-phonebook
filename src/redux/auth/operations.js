@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 export const goItApi = axios.create({
   baseURL: 'https://connections-api.herokuapp.com/',
@@ -55,7 +54,6 @@ export const refreshThunk = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     const savedToken = getState().auth.token;
     if (!savedToken) {
-      toast.warning('Token is not exist');
       return rejectWithValue('Token is not exist');
     }
     try {
